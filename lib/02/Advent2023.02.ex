@@ -1,5 +1,3 @@
-require IEx
-
 defmodule Advent202302 do
   def load_file(filename) do
     {:ok, content} = File.read(filename)
