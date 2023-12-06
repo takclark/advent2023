@@ -27,14 +27,6 @@ defmodule Advent202304 do
 
         case left_for_this_line do
           0 ->
-            IO.puts("finished with:")
-            IO.puts("#{elem(hd(chart), 0)}")
-            IO.puts("next n:")
-
-            unless tl(chart) == [] do
-              IO.puts("#{elem(hd(tl(chart)), 1)}")
-            end
-
             process(tl(chart))
 
           _ ->
