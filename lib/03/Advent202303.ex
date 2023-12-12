@@ -1,5 +1,6 @@
 defmodule Three do
   require IEx
+
   def solve_01(filename) do
     line_str_list = AdventUtils.load_file(filename)
     not_symbols = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "."]
@@ -86,18 +87,20 @@ defmodule Three do
       |> Enum.reject(&(&1 == []))
       |> List.flatten()
 
-    star_coords |> Enum.reduce(0, fn sc, acc ->
-      numbers_adj = numbers |> Enum.filter(fn num ->
-        is_adjacent(sc, elem(num,1))
-      end)
+    star_coords
+    |> Enum.reduce(0, fn sc, acc ->
+      numbers_adj =
+        numbers
+        |> Enum.filter(fn num ->
+          is_adjacent(sc, elem(num, 1))
+        end)
 
-      if (numbers_adj |> Enum.count()) == 2 do
+      if numbers_adj |> Enum.count() == 2 do
         # real
-        acc + (elem(hd(numbers_adj),0) * elem(List.last(numbers_adj), 0))
+        acc + elem(hd(numbers_adj), 0) * elem(List.last(numbers_adj), 0)
       else
         acc
       end
-
     end)
   end
 
@@ -110,8 +113,8 @@ defmodule Three do
     tst_x = elem(cord, 0)
     tst_y = elem(cord, 1)
 
-    (tst_x >= tgt_x_rng_str-1 && tst_x <= tgt_x_rng_str + tgt_x_rng_len) &&
-    (tst_y >= tgt_y-1 && tst_y <= tgt_y + 1)
+    tst_x >= tgt_x_rng_str - 1 && tst_x <= tgt_x_rng_str + tgt_x_rng_len &&
+      (tst_y >= tgt_y - 1 && tst_y <= tgt_y + 1)
   end
 
   def get_ints_with_coords_with_y(line_str, y) do
