@@ -48,5 +48,6 @@ defmodule Ten do
   # It's too late to do this island BFS
   def solve_02(filename) do
     {_, content} = File.read(filename)
+    content
   end
 end
